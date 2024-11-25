@@ -1,0 +1,50 @@
+name: Frontend CI/CD
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - qa
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test -- --watch=false
+
+    - name: Build Angular app
+      run: npm run build --prod
+
+    - name: Build Docker image
+      run: docker build -t frontend-app .
+
+    - name: Push Docker image to GitHub Packages
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        docker tag frontend-app ghcr.io/${{ github.repository_owner }}/frontend-app:latest
+        docker push ghcr.io/${{ github.repository_owner }}/frontend-app:latest
+
+    - name: Deploy to Dev environment
+      run: ./deploy_to_dev.sh
+
+    - name: Deploy to QA environment
+      if: github.ref == 'refs/heads/qa'
+      run: ./deploy_to_qa.sh
+
+    - name: Deploy to Production environment
+      if: github.ref == 'refs/heads/main'
+      run: ./deploy_to_prod.sh
