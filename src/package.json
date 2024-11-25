@@ -1,0 +1,13 @@
+{
+  "name": "Hamburgalia-Front",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
