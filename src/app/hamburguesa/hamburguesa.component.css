@@ -38,7 +38,7 @@
 }
 
 
-.sanguche{
+.hamburguesa{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -50,7 +50,7 @@
     transition: 500ms;
 }
 
-.sanguche img{
+.hamburguesa img{
     width: 30%;
     transition: 500ms;
 
