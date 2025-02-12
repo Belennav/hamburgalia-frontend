@@ -8,52 +8,52 @@ import { Observer } from 'rxjs';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  Hamburguesas: Hamburguesa[] = [];
+  hamburguesas: Hamburguesa[] = [];
   newHamburguesa: Hamburguesa = {
     id: 0,
     nombre: '',
     ingredientes: []
   };
 
-  constructor(private HamburguesaService: HamburguesaService) {}
+  constructor(private hamburguesaService: HamburguesaService) {}
 
   ngOnInit(): void {
-    this.getHamburguesas();
+    this.getHamburguesa();
   }
 
   
-  getHamburguesas(): void {
-    console.log("getHamburguesas");
-    this.HamburguesaService.getAllHamburguesas().subscribe(
-      (Hamburguesas) => {
-        this.Hamburguesas = Hamburguesas;
-        console.log("Hamburguesas", this.Hamburguesas);
+  getHamburguesa(): void {
+    console.log("getHamburguesa");
+    this.hamburguesaService.getAllHamburguesas().subscribe(
+      (hamburguesas) => {
+        this.hamburguesas = hamburguesas;
+        console.log("hamburguesas", this.hamburguesas);
       },
       (error) => {
-        console.error('Error loading Hamburguesas', error);
+        console.error('Error loading hamburguesas', error);
       }
     );
   }
 
   addHamburguesa(): void {
-    this.HamburguesaService.addHamburguesa(this.newHamburguesa).subscribe(
+    this.hamburguesaService.addHamburguesa(this.newHamburguesa).subscribe(
       () => {
-        this.getHamburguesas(); // Actualizar la lista después de agregar
+        this.getHamburguesa(); // Actualizar la lista después de agregar
         this.newHamburguesa = { id: 0, nombre: '', ingredientes: [] }; // Limpiar el formulario
       },
       (error) => {
-        console.error('Error adding Hamburguesa', error);
+        console.error('Error adding hamburguesa', error);
       }
     );
   }
 
   deleteHamburguesa(id: number): void {
-    this.HamburguesaService.deleteHamburguesa(id).subscribe(
+    this.hamburguesaService.deleteHamburguesa(id).subscribe(
       () => {
-        this.getHamburguesas(); // Actualizar la lista después de eliminar
+        this.getHamburguesa(); // Actualizar la lista después de eliminar
       },
       (error) => {
-        console.error('Error deleting Hamburguesa', error);
+        console.error('Error deleting hamburguesa', error);
       }
     );
   }

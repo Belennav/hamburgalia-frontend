@@ -1,0 +1,19 @@
+<div style="height: 500px; margin-bottom: 30px;">
+<form (ngSubmit)="sendHamburguesa()">
+  <div class="box">
+  <div>
+    <input  placeholder="Nombre de la hamburguesa" type="text" id="nombre" [(ngModel)]="hamburguesa.nombre" name="nombre" required>
+  </div>
+  <div class="amigo">
+    <label for="ingredientes">Seleccionar 3 Ingredientes</label>
+    <br/>
+    <select id="ingredientes" [(ngModel)]="hamburguesa.ingredientes" name="ingredientes" multiple>
+
+      <option *ngFor="let ingrediente of availableIngredientes" [value]="ingrediente">{{ ingrediente }}</option>
+
+    </select>
+  </div>
+  <button type="submit">Enviar</button>
+</div>
+</form>
+</div>

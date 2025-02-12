@@ -1,137 +1,45 @@
-/* Reset básico de estilos */
-* {
-    margin: 0;
+
+body{
+    background-color: rgb(24, 33, 34);
+    color: white;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 150px;
+    padding-top: 10px;
 }
 
-/* Estilos para el encabezado y navegación */
-header {
-    background-color: #f8b400; /* Color de fondo del encabezado */
-    color: white;
-    padding: 20px;
-    text-align: center;
+html{
+    font-family: "Scope One", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-nav ul {
-    list-style: none;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Estilos para las secciones */
-section {
-    padding: 20px;
-    margin: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2, h3 {
-    color: #333;
-}
-
-h1 {
-    font-size: 2em;
-}
-
-h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-h3 {
-    font-size: 1.2em;
-    margin-bottom: 5px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    margin-bottom: 8px;
-}
-
-form input[type="text"], 
-form textarea, 
-form select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-form button {
-    background-color: #f8b400; /* Color del botón */
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #e0a300; /* Color del botón en hover */
-}
-
-/* Estilos para la tienda y el ranking */
-ul {
-    list-style: none;
-}
-
-ul li {
+.nav{
+    top:0;
+    background-color: rgb(38, 51, 52);
+    border-bottom: 2px solid white;
+    margin: 0;
+    height: 50px;
     margin-bottom: 20px;
 }
 
-ul li img {
-    max-width: 100px;
-    border-radius: 8px;
-}
-
-#ranking ul li, #tienda ul li {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #fafafa;
-}
-
-#perfil {
-    background-color: #f0f0f0;
-}
-
-#perfil p {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-/* Estilos para el pie de página */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
+h1{
     margin: 0;
+}
+label{
+
+    font-weight: 700;
+    font-size: 20px;
+}
+
+input{
+    background-color: rgb(32, 32, 32);
+    border: solid 1px white;
+    color: aliceblue;
+    border-radius: 5px;
+    height: 20px;
+}
+
+button{
+    cursor: pointer;
 }

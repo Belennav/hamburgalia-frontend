@@ -12,7 +12,7 @@ export interface Hamburguesa {
   providedIn: 'root',
 })
 export class HamburguesaService {
-  private apiUrl = 'http://127.0.0.1:3000/api/Hamburguesas';
+  private apiUrl = 'http://127.0.0.1:3000/api/hamburguesas';
 
   constructor(private http: HttpClient) {}
 
@@ -20,8 +20,8 @@ export class HamburguesaService {
     return this.http.get<Hamburguesa[]>(this.apiUrl);
   }
 
-  addHamburguesa(Hamburguesa: Hamburguesa): Observable<void> {
-    return this.http.post<void>(this.apiUrl, { Hamburguesa });
+  addHamburguesa(hamburguesa: Hamburguesa): Observable<void> {
+    return this.http.post<void>(this.apiUrl, { hamburguesa });
   }
 
   deleteHamburguesa(id: number): Observable<void> {

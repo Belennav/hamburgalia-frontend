@@ -1,0 +1,125 @@
+.rakkas-regular {
+    font-family: "Rakkas", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-items: space-around;
+
+    background-color: rgb(31, 42, 44);
+    height: 85%;
+    width: auto;
+    margin: 0px 0px 0px 0px;
+    padding: 20px;
+    border: 2px solid rgb(68, 77, 79);
+    border-radius: 10px;
+    transition: ease-out 300ms;
+    user-select: none;
+}
+
+
+.container:hover button{
+    color: white;
+}
+
+.container:hover{
+    background-color: rgb(45, 59, 62);
+    border: 2px solid rgb(74, 255, 74);
+    margin: -10px -5px -10px -5px;
+    height: 90%;
+    z-index: 10;
+    font-weight: 1000;
+    transition: 100ms;
+}
+
+
+.sanguche{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: baseline;
+    list-style: none;
+    font-size: 15px;
+    margin-left: 0;
+    font-weight: 900;
+    transition: 500ms;
+}
+
+.sanguche img{
+    width: 30%;
+    transition: 500ms;
+
+}
+
+
+
+
+
+
+.container h1{
+    font-family: "Rakkas", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    margin: 0;
+}
+
+button{
+    background-color: transparent;
+    border: 2px solid rgb(68, 77, 79);
+    color: white ;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: small;
+    margin-top: 30px;
+    transition: 200ms;
+    position: relative;
+}
+
+button:hover{
+    border: 2px solid rgb(74, 255, 74);
+    background-color: rgb(74, 255, 74);
+    color: black;
+}
+
+.red:hover{
+    border: 2px solid rgb(255, 74, 74);
+    background-color: rgb(255, 74, 74);
+    color: white;
+}
+
+
+h3{
+    font-size: 30px;
+    font-weight: 900;
+    margin: 0;
+}
+
+h5{
+    margin: 0;
+    color: rgb(192, 192, 192);
+    font-style: italic;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+ul{
+    margin: 0;
+    padding-inline-start: 0px;
+}
+
+li{
+    list-style: none;
+}
+
+
+
+

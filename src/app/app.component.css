@@ -1,0 +1,28 @@
+.todo{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: -30px;
+    column-gap: 30px;
+}
+
+.todo ul{
+    padding-inline-start: 0px;
+}
+button {
+  background-color: rgb(74, 255, 74);
+  height: 30px;
+  border: none;
+  border-radius: 100px;
+  color: black;
+  font-weight: 600;
+  font-size: medium;
+  margin-top: 30px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  font-size: larger;
+}

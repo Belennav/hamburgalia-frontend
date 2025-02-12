@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hamburgualia-app": {
+    "hamburgalia-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/hamburgualia-app",
+            "outputPath": "dist/hamburgalia-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hamburgualia-app:build:production"
+              "buildTarget": "hamburgalia-app:build:production"
             },
             "development": {
-              "buildTarget": "hamburgualia-app:build:development"
+              "buildTarget": "hamburgalia-app:build:development"
             }
           },
           "defaultConfiguration": "development"
