@@ -2,7 +2,6 @@ FROM node:current-alpine as build
 RUN apk add --no-cache chromium
 WORKDIR /app
 COPY package.json .
-COPY package-lock.json .
 RUN npm i --force
 COPY . .
 ENV CHROME_BIN=/usr/bin/chromium-browser
