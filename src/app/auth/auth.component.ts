@@ -9,6 +9,7 @@ export class AuthComponent {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('isAdmin');
     window.location.reload();
   }
   user = {
@@ -67,6 +68,7 @@ export class AuthComponent {
         // save the token in local storage
         localStorage.setItem('token', response.token);
         localStorage.setItem('id', response.id);
+        localStorage.setItem('isAdmin', response.isAdmin.toString());
 
         window.location.reload();
       },

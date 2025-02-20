@@ -17,6 +17,7 @@ interface RegisterResponse {
 interface LoginResponse {
   token: string;
   id: string;
+  isAdmin: boolean;
 }
 
 @Injectable({
