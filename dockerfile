@@ -1,4 +1,4 @@
-FROM node:current-alpine as build
+FROM node:20-alpine as build
 RUN apk add --no-cache chromium
 WORKDIR /app
 COPY package.json .
@@ -6,8 +6,8 @@ COPY package-lock.json .
 RUN npm ci
 COPY . .
 ENV CHROME_BIN=/usr/bin/chromium-browser
-RUN npx ng test --karma-config=karma.conf.ci.js
-RUN npx ng build
+RUN npx -p @angular/cli ng test --karma-config=karma.conf.ci.js
+RUN npx -p @angular/cli ng build
 # test
 FROM nginx:alpine as front
 COPY --from=build /app/dist/salardich-app/browser /usr/share/nginx/html
