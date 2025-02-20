@@ -1,56 +1,111 @@
-<div class="auth-container" *ngIf="notLoggedIn">
-  
-  <div class="form-toggle">
-    <button (click)="isLogin = true" [class.active]="isLogin">Login</button>
-    <button (click)="isLogin = false" [class.active]="!isLogin">Registrarse</button>
+<div
+  class="flex align-middle items-center rounded-b-2xl bg-slate-500 w-full"
+  *ngIf="notLoggedIn"
+>
+  <div class="py-2">
+    <label
+      class="inline-flex items-center cursor-pointer border-r-2 border-slate-600 pr-4 mr-4"
+    >
+      <span class="px-1 ms-3 text-sm font-medium">Registrarse</span>
+      <input
+        class="sr-only peer"
+        type="checkbox"
+        id="toggle"
+        [(ngModel)]="isLogin"
+        name="isLogin"
+      />
+      <div
+        class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-green-600 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"
+      ></div>
+      <span class="px-1 ms-3 text-sm font-medium">Iniciar Sesión</span>
+    </label>
   </div>
-  
-  <div class="centrar">
-  <form *ngIf="isLogin" (ngSubmit)="login()">
-  <H1 class="logo">Salardich</H1>
-  <h2 class="Scope">"Sobre gustos no hay nada escrito."</h2>
-    <h2>Iniciar Sesion</h2>
-    <div class="container">
-      <div class="register-box">
+
+  <form class="space-x-2" *ngIf="isLogin" (ngSubmit)="login()">
     <label for="email">Email</label>
-    <input type="text" id="email" [(ngModel)]="user.email" name="email" required />
+    <input
+      class="rounded-md border border-slate-600 bg-white text-gray-950 p-1"
+      type="text"
+      id="email"
+      [(ngModel)]="user.email"
+      name="email"
+      required
+    />
 
-    <label for="password">Contraseña  </label>
-    <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
+    <label for="password">Contraseña </label>
+    <input
+      class="rounded-md border border-slate-600 bg-white text-gray-950 p-1"
+      type="password"
+      id="password"
+      [(ngModel)]="user.password"
+      name="password"
+      required
+    />
 
-    <button type="submit">Iniciar Sesion</button>
-    </div>
-    </div>
+    <button
+      class="p-1 bg-green-600 rounded-md hover:bg-green-700"
+      type="submit"
+    >
+      Iniciar Sesion
+    </button>
   </form>
-</div>
 
-<div class="centrar">
+  <form *ngIf="!isLogin" class="space-x-2" (ngSubmit)="register()">
+    <label class="" for="username">Username</label>
+    <input
+      class="rounded-md border border-slate-600 bg-white text-gray-950 p-1 w-24"
+      type="text"
+      id="username"
+      [(ngModel)]="user.username"
+      name="username"
+      required
+    />
 
-  <form *ngIf="!isLogin" (ngSubmit)="register()">
-    <H1 class="logo">Salardich</H1>
-  <h2 class="Scope">"Sobre gustos no hay nada escrito."</h2>
-    <h2>Registrarse</h2>
-    <div class="container">
-      <div class="register-box">
-        <label for="username">Username</label>
-        <input type="text" id="username" [(ngModel)]="user.username" name="username" required />
+    <label for="email">Email</label>
+    <input
+      class="rounded-md border border-slate-600 bg-white text-gray-950 p-1"
+      type="email"
+      id="email"
+      [(ngModel)]="user.email"
+      name="email"
+      required
+    />
 
-        <label for="email">Email</label>
-        <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
+    <label for="password">Contraseña</label>
+    <input
+      class="rounded-md border border-slate-600 bg-white text-gray-950 p-1"
+      type="password"
+      id="password"
+      [(ngModel)]="user.password"
+      name="password"
+      required
+    />
 
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
+    <label for="isAdmin">Administrador</label>
 
-        <label for="isAdmin">Administrador</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="isAdmin"
+      [(ngModel)]="user.isAdmin"
+      name="isAdmin"
+    />
 
-        <input class="checkbox" type="checkbox" id="isAdmin" [(ngModel)]="user.isAdmin" name="isAdmin" />
-        
-        <button type="submit">Registrarse</button>
-      </div>
-    </div>
-    
+    <button
+      class="bg-blue-600 rounded-md p-1 m-1 hover:bg-blue-700"
+      type="submit"
+    >
+      Registrarse
+    </button>
   </form>
-</div>
 </div>
 <!-- logout button -->
-<button *ngIf="!notLoggedIn" (click)="logout()">Logout</button>
+<div
+  *ngIf="!notLoggedIn"
+  class="w-full bg-slate-500 rounded-b-2xl p-3 flex justify-between border border-slate-600 shadow-2xl"
+>
+  <button class="rounded-md bg-red-700 hover:bg-red-800 p-3" (click)="logout()">
+    Logout
+  </button>
+  <h1 class="text-center w-full text-4xl font-bold">HAMBURGALIA</h1>
+</div>

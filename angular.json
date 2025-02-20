@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hamburgalia-app": {
+    "salardich-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/hamburgalia-app",
+            "outputPath": "dist/salardich-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hamburgalia-app:build:production"
+              "buildTarget": "salardich-app:build:production"
             },
             "development": {
-              "buildTarget": "hamburgalia-app:build:development"
+              "buildTarget": "salardich-app:build:development"
             }
           },
           "defaultConfiguration": "development"

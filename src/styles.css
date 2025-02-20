@@ -1,45 +1,6 @@
+@import "tailwindcss";
 
-body{
-    background-color: rgb(24, 33, 34);
-    color: white;
-    padding: 0;
-    margin: 0;
-    padding: 150px;
-    padding-top: 10px;
-}
-
-html{
-    font-family: "Scope One", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.nav{
-    top:0;
-    background-color: rgb(38, 51, 52);
-    border-bottom: 2px solid white;
-    margin: 0;
-    height: 50px;
-    margin-bottom: 20px;
-}
-
-h1{
-    margin: 0;
-}
-label{
-
-    font-weight: 700;
-    font-size: 20px;
-}
-
-input{
-    background-color: rgb(32, 32, 32);
-    border: solid 1px white;
-    color: aliceblue;
-    border-radius: 5px;
-    height: 20px;
-}
-
-button{
-    cursor: pointer;
+body {
+  @apply bg-gray-100;
+  @apply text-white;
 }

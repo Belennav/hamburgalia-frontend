@@ -1,16 +1,20 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Hamburguesa, HamburguesaService } from '../services/hamburguesa.service';
+import {
+  Hamburguesa,
+  HamburguesaService,
+} from '../services/hamburguesa.service';
 
 @Component({
   selector: 'app-hamburguesa-form',
   templateUrl: './hamburguesa-form.component.html',
-  styleUrl: './hamburguesa-form.component.css',
 })
 export class HamburguesaFormComponent {
   hamburguesa: Hamburguesa = {
+    likedBy: [],
     nombre: '',
     ingredientes: [],
     creatorId: '',
+    description: '',
   };
 
   @Output() emitHamburguesa = new EventEmitter<Hamburguesa>();
@@ -31,11 +35,11 @@ export class HamburguesaFormComponent {
 
   sendHamburguesa() {
     if (this.hamburguesa.ingredientes.length != 3) {
-      alert('La hamburguesa debe tener 3 ingredientes');
+      alert('El sanguche debe tener 3 ingredientes');
       return;
     }
     if (this.hamburguesa.nombre === '') {
-      alert('La hamburguesa debe tener un nombre');
+      alert('El sanbuche debe tener un nombre');
       return;
     }
     this.emitHamburguesa.emit(this.hamburguesa);

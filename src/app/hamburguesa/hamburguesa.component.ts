@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Hamburguesa, HamburguesaService } from '../services/hamburguesa.service';
+import {
+  Hamburguesa,
+  HamburguesaService,
+} from '../services/hamburguesa.service';
 
 @Component({
   selector: 'app-hamburguesa',
   templateUrl: './hamburguesa.component.html',
-  styleUrl: './hamburguesa.component.css',
 })
 export class HamburguesaComponent {
   updateHamburguesa(hamburguesa: Hamburguesa) {
@@ -24,7 +26,15 @@ export class HamburguesaComponent {
     nombre: '',
     ingredientes: [],
     creatorId: '',
+    likedBy: [],
+    description: '',
   };
+
+  userId = localStorage.getItem('id') || '';
+
+  likes: number = 0;
+
+  iLiked: boolean = false;
 
   editing: boolean = false;
 
@@ -35,8 +45,11 @@ export class HamburguesaComponent {
   ) {}
 
   ngOnInit() {
-    // cuando miras al vacío por suficiente tiempo
-    // la mirada del vacío se posa sobre tu ser
+    if (this.hamburguesa.likedBy == undefined) {
+      this.hamburguesa.likedBy = [];
+    }
+    this.likes = this.hamburguesa.likedBy.length;
+    this.iLiked = this.hamburguesa.likedBy.includes(this.userId);
     this.authService.getUsers().subscribe(
       (users) => {
         const creator = users.users.find(
@@ -47,7 +60,6 @@ export class HamburguesaComponent {
         }
       },
       (error) => {
-        // no hay que pescar dos peces con la misma red
         console.log('Error fetching users');
       }
     );
@@ -63,9 +75,60 @@ export class HamburguesaComponent {
         window.location.reload();
       },
       (error) => {
-        alert('No esta autorizado para borrar este sanbuche');
+        alert('No esta autorizado para borrar este hamburguesa');
       }
     );
+  }
+
+  onLike() {
+    if (!this.userId) {
+      alert('Debes estar logueado para dar like');
+      return;
+    }
+    if (this.hamburguesa.likedBy.includes(this.userId)) {
+      if (this.hamburguesa._id) {
+        this.hamburguesa.likedBy = this.hamburguesa.likedBy.filter(
+          (id) => id !== this.userId
+        );
+        this.likes = this.hamburguesa.likedBy.length;
+        this.iLiked = false;
+        this.hamburguesaService.like(this.hamburguesa._id).subscribe(
+          () => {},
+          (error) => {
+            alert(error.error.error);
+            // rollback
+            this.hamburguesa.likedBy.push(this.userId);
+            this.likes = this.hamburguesa.likedBy.length;
+            this.iLiked = true;
+          }
+        );
+      } else {
+        alert('ERROR: falta id');
+      }
+
+      return;
+    }
+
+    if (this.hamburguesa._id) {
+      this.hamburguesa.likedBy.push(this.userId);
+
+      this.likes = this.hamburguesa.likedBy.length;
+      this.iLiked = true;
+      this.hamburguesaService.like(this.hamburguesa._id).subscribe(
+        () => {},
+        (error) => {
+          alert(error.error.error);
+        }
+      );
+    } else {
+      // rollback
+      this.hamburguesa.likedBy = this.hamburguesa.likedBy.filter(
+        (id) => id !== this.userId
+      );
+      this.likes = this.hamburguesa.likedBy.length;
+      this.iLiked = false;
+      alert('ERROR: falta id');
+    }
   }
 
   onEdit(id?: string) {

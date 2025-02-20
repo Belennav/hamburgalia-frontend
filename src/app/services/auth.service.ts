@@ -16,13 +16,14 @@ interface RegisterResponse {
 
 interface LoginResponse {
   token: string;
+  id: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:3000/api/users';
+  private apiUrl = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient) {}
 

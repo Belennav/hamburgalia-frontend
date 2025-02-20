@@ -1,19 +1,54 @@
-<div style="height: 500px; margin-bottom: 30px;">
-<form (ngSubmit)="sendHamburguesa()">
-  <div class="box">
-  <div>
-    <input  placeholder="Nombre de la hamburguesa" type="text" id="nombre" [(ngModel)]="hamburguesa.nombre" name="nombre" required>
-  </div>
-  <div class="amigo">
-    <label for="ingredientes">Seleccionar 3 Ingredientes</label>
-    <br/>
-    <select id="ingredientes" [(ngModel)]="hamburguesa.ingredientes" name="ingredientes" multiple>
+<div>
+  <form (ngSubmit)="sendHamburguesa()">
+    <div
+      class="rounded-2xl bg-yellow-500 p-3 border-2 border-yellow-100 text-black"
+    >
+      <div>
+        <input
+          class="bg-slate-200 text-xl w-full p-2 rounded-md hover:bg-slate-300 border-1 border-blue-500"
+          placeholder="Nombre de la hamburguesa"
+          type="text"
+          id="nombre"
+          [(ngModel)]="hamburguesa.nombre"
+          name="nombre"
+          required
+        />
 
-      <option *ngFor="let ingrediente of availableIngredientes" [value]="ingrediente">{{ ingrediente }}</option>
-
-    </select>
-  </div>
-  <button type="submit">Enviar</button>
-</div>
-</form>
+        <textarea
+          class="bg-slate-200 text-l w-full p-2 my-1 rounded-md hover:bg-slate-300 border-1 border-blue-500"
+          placeholder="Descripción de la hamburguesa"
+          id="descripcion"
+          [(ngModel)]="hamburguesa.description"
+          name="descripcion"
+          required
+        ></textarea>
+      </div>
+      <div class="my-3">
+        <label class="text-xl" for="ingredientes"
+          >Seleccionar 3 Ingredientes:</label
+        >
+        <select
+          class="bg-slate-200 text-xl w-full p-1 my-1 rounded-md border-1 border-blue-500"
+          id="ingredientes"
+          [(ngModel)]="hamburguesa.ingredientes"
+          name="ingredientes"
+          multiple
+        >
+          <option
+            *ngFor="let ingrediente of availableIngredientes"
+            class="bg-slate-300 text-xl w-full p-2 my-1 rounded-md hover:bg-slate-400"
+            [value]="ingrediente"
+          >
+            {{ ingrediente }}
+          </option>
+        </select>
+      </div>
+      <button
+        class="bg-green-600 rounded-md p-3 hover:bg-green-700 text-white"
+        type="submit"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
 </div>

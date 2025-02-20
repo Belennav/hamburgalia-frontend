@@ -4,11 +4,11 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
     window.location.reload();
   }
   user = {
@@ -27,6 +27,7 @@ export class AuthComponent {
   }
 
   register(): void {
+    if (!this.checkData(true)) return;
     this.authService.register(this.user).subscribe(
       (response) => {
         alert('Usuario registrado, inicie sesión');
@@ -37,7 +38,25 @@ export class AuthComponent {
     );
   }
 
+  checkData(register: boolean): boolean {
+    if (this.user.username === '') {
+      alert('El usuario debe tener un nombre');
+      return false;
+    }
+    if (register && this.user.email === '') {
+      alert('El usuario debe tener un email');
+      return false;
+    }
+    if (this.user.password === '') {
+      alert('El usuario debe tener una contraseña');
+
+      return false;
+    }
+    return true;
+  }
+
   login(): void {
+    if (!this.checkData(false)) return;
     this.authService.login(this.user).subscribe(
       (response) => {
         if (response.token === '') {
@@ -47,6 +66,8 @@ export class AuthComponent {
         console.log('Logeado');
         // save the token in local storage
         localStorage.setItem('token', response.token);
+        localStorage.setItem('id', response.id);
+
         window.location.reload();
       },
       (error) => {

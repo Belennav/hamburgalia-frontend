@@ -7,6 +7,8 @@ export interface Hamburguesa {
   nombre: string;
   ingredientes: string[];
   creatorId: string;
+  likedBy: string[];
+  description: string;
 }
 
 @Injectable({
@@ -16,8 +18,14 @@ export class HamburguesaService {
   private apiUrl = 'http://localhost:3000/api/hamburguesas';
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<{ hamburguesas: Hamburguesa[] }> {
-    return this.http.get<{ hamburguesas: Hamburguesa[] }>(this.apiUrl);
+  get(skip = 0): Observable<{ hamburguesas: Hamburguesa[] }> {
+    return this.http.get<{ hamburguesas: Hamburguesa[] }>(
+      `${this.apiUrl}/${skip}`
+    );
+  }
+
+  getPageAmount(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/pageAmount`);
   }
 
   getByCreatorId(creatorId: string): Observable<Hamburguesa[]> {
@@ -37,6 +45,13 @@ export class HamburguesaService {
       headers: {
         Authorization: `${token}`,
       },
+    });
+  }
+
+  like(id: string): Observable<void> {
+    const token = localStorage.getItem('token');
+    return this.http.put<void>(`${this.apiUrl}/like/${id}`, {
+      token,
     });
   }
 

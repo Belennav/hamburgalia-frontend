@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HamburguesaFormComponent } from './hamburguesa-form.component';
 
-describe('HamburguesaFormComponent', () => {
+describe('SangucheFormComponent', () => {
   let component: HamburguesaFormComponent;
   let fixture: ComponentFixture<HamburguesaFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HamburguesaFormComponent]
-    })
-    .compileComponents();
+      declarations: [HamburguesaFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HamburguesaFormComponent);
     component = fixture.componentInstance;

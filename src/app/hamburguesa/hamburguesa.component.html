@@ -1,35 +1,105 @@
+<div
+  class="rounded-2xl border-amber-500 border-2 p-3 bg-amber-950 min-w-96 min-h-72 w-full shadow-2xl"
+  *ngIf="!editing"
+>
+  <div class="flex justify-between">
+    <div class="flex-col">
+      <h1 class="text-2xl font-bold">{{ hamburguesa.nombre }}</h1>
+      <h5 *ngIf="creatorName">
+        <i>Autor: {{ creatorName }}</i>
+      </h5>
 
-<div class="container"*ngIf="!editing" >
-  <h1>{{hamburguesa.nombre}}</h1>
-  <h5 *ngIf="creatorName"><i>Autor: {{creatorName}}</i></h5>
-<div class="hamburguesa">
-  <img src="../upper-bread.png"> 
-  <ul *ngFor="let ingrediente of hamburguesa.ingredientes">
-    <li>{{ingrediente}}</li>
-  </ul>
-  <img src="../lower-toast.png">
+      <p class="text-lg">{{ hamburguesa.description }}</p>
+    </div>
+
+    <div class="flex-row items-center">
+      <button class="flex items-center" (click)="onLike()">
+        <svg width="50px" height="50px" *ngIf="iLiked">
+          <g transform="scale(0.25)">
+            <path
+              d="M 180,80 L100,180 20,80 A 40,40 0,0,1 100,80 A 40,40 0,0,1 180,80"
+              stroke="black"
+              stroke-width="5"
+              fill="red"
+            />
+          </g>
+        </svg>
+        <svg width="50px" height="50px" *ngIf="!iLiked">
+          <g transform="scale(0.25)">
+            <path
+              d="M 180,80 L100,180 20,80 A 40,40 0,0,1 100,80 A 40,40 0,0,1 180,80"
+              stroke="black"
+              stroke-width="5"
+              fill="white"
+            />
+          </g>
+        </svg>
+        <span class="ml-2">{{ likes }}</span>
+      </button>
+    </div>
+  </div>
+  <div class="mt-5">
+    <div class="w-full bg-amber-700 rounded-t-full h-12"></div>
+    <div class="" *ngFor="let ingrediente of hamburguesa.ingredientes">
+      <div class="p-2 my-1 rounded-md bg-green-600 text-center">
+        {{ ingrediente }}
+      </div>
+    </div>
+    <div class="w-full bg-amber-700 rounded-b-full h-12"></div>
+  </div>
+
+  <div class="flex m-3 justify-between">
+    <button
+      class="bg-blue-400 rounded-l-md w-full p-3 flex items-center"
+      (click)="onEdit(hamburguesa._id)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-pencil-square"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+        />
+      </svg>
+    </button>
+    <button
+      class="bg-red-400 p-3 rounded-r-md w-full"
+      (click)="onDelete(hamburguesa._id)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-trash3-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"
+        />
+      </svg>
+    </button>
+  </div>
 </div>
-
-<div>
-  <button (click)="onEdit(hamburguesa._id)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-    </svg>
-
+<div
+  *ngIf="editing"
+  class="rounded-2xl border-amber-500 border-2 p-3 bg-amber-950"
+>
+  <app-hamburguesa-form
+    (emitHamburguesa)="updateHamburguesa($event)"
+  ></app-hamburguesa-form>
+  <button
+    class="bg-red-400 p-3 rounded-md w-full mt-3 hover:bg-red-500"
+    (click)="onCancel()"
+  >
+    Cancelar
   </button>
-  <button class="red" (click)="onDelete(hamburguesa._id)">
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-      <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-    </svg>
-  </button>
-</div>
-
-
-</div>
-<div *ngIf="editing" >
-<app-hamburguesa-form  (emitSanguche)="updateSanguche($event)"></app-hamburguesa-form>
-<button style="width: 100px; height: 30px;margin-top: 5px;" (click)="onCancel()">Cancelar</button>
-
 </div>
