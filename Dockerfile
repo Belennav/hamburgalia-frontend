@@ -1,4 +1,4 @@
-FROM node:current-alpine as build
+FROM node:20-alpine as build
 RUN apk add --no-cache chromium
 WORKDIR /app
 COPY package.json .
