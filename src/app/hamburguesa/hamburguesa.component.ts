@@ -132,6 +132,13 @@ export class HamburguesaComponent {
   }
 
   onEdit(id?: string) {
+    if (!id) return;
+    if (localStorage.getItem('id') !== this.hamburguesa.creatorId) {
+      if (localStorage.getItem('isAdmin') !== 'true') {
+        alert('No estas autorizado para editar este hamburguesa');
+        return;
+      }
+    }
     this.editing = true;
   }
   onCancel() {
