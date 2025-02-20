@@ -3,7 +3,7 @@ RUN apk add --no-cache chromium
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
-RUN npm ci
+RUN npm i --force
 COPY . .
 ENV CHROME_BIN=/usr/bin/chromium-browser
 RUN npx ng test --karma-config=karma.conf.ci.js
